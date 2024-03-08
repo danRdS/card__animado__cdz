@@ -8,9 +8,9 @@
 }
 
 body {
-    background: url(/assets/images/fundo10.png);
     background-color: rgb(23, 23, 85);
     color: #e7e7e7;
+    background: url(/assets/images/fundo10.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
