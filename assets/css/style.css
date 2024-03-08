@@ -1,0 +1,580 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: url(/assets/images/fundo10.png);
+    background-color: rgb(23, 23, 85);
+    color: #e7e7e7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    padding: 1rem;
+    z-index: 3;
+    transition: background .3s ease-in-out;
+}
+
+.cor_fundo_header { 
+    background-color: rgba(37, 37, 37, 0.692);
+    box-shadow: 0 0 5px 2px rgb(0, 0, 0);
+}
+
+h1 a { 
+    color: #e7e7e7;
+    text-shadow: 0 0 5px rgb(255, 215, 0);
+}
+
+.menu_header {
+    display: flex;
+    gap: 3.5rem;
+    margin: auto;
+}
+
+.opcao_menu_header { position: relative; }
+
+.opcao_menu_header a { color: #e7e7e7; }
+
+.menu_opcao {
+    position: absolute;
+    top: 1.8rem;
+    width: 140px;
+    padding-block: .3rem;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, .35);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, .85);
+    backdrop-filter: blur(3px);
+    overflow: hidden;
+    transition: all .3s;
+}
+
+a[href="#1"] + .menu_opcao { right: 0; }
+
+a[href="#2"] + .menu_opcao { right: -50%; }
+
+a[href="#cavaleiros"] + .menu_opcao {
+    left: 0;
+    width: max-content;
+}
+
+a[href="#cavaleiros"] + .menu_opcao a { color: #fff; }
+
+.opcao_menu_header a.aberto + .menu_opcao {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu_opcao li a {
+    display: block;
+    padding: .3rem .9rem;
+}
+
+.menu_opcao li:hover {
+    background-color: rgb(101, 93, 108);
+}
+
+/* menu mobile */
+.menu_mobile {
+    display: none;
+    place-items: center;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.barra {
+    width: 32px;
+    height: 3px;
+    background-color: #e7e7e7;
+    display: block;
+    margin: 5px auto;
+    transition: all .3s linear;
+}
+
+.clicado {
+    background-color: rgb(61, 56, 67);
+}
+
+.btn.clicado .barra:first-of-type {
+    transform: rotate(45deg) translate(6px, 6px) ;
+}
+
+.btn.clicado .barra:nth-of-type(2) {
+    background-color: transparent;
+}
+
+.btn.clicado .barra:last-of-type {
+    transform: rotate(-45deg) translate(5px, -6px) ;
+}
+
+.menu_mobile_header {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding-block: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .1s linear;
+}
+
+.opcao_menu_mobile_header > a {
+    width: 150px;
+    font-size: clamp(18px, 2.5vw, 1.5rem);
+    font-weight: 700;
+    padding: .2rem;
+    text-align: center;
+    display: block;
+    color: #e7e7e7;
+    position: relative;
+}
+
+.opcao_menu_mobile_header > a i {
+    position: absolute;
+    font-size: clamp(14px, 2vw, 18px);
+    top: 50%;
+    transform: translateY(-50%);
+    right: .6rem;
+    transition: all .3s;
+}
+
+.opcao_menu_mobile_header a.aberto i {
+    transform: rotate(180deg) translateY(50%);
+}
+
+.opcao_menu_mobile_header a.aberto + .menu_mobile_opcao {
+    height: 7rem;
+}
+
+.opcao_menu_mobile_header a[href='#1'].aberto + .menu_mobile_opcao {
+    height: 9rem;
+}
+
+.menu_mobile_opcao {
+    font-weight: 200;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    height: 0;
+    overflow: hidden;
+    transition: all .3s linear;
+}
+
+.menu_mobile_opcao a {
+    color: #e7e7e7;
+    border-radius: .2rem;
+    display: block;
+    padding: .35rem;
+}
+
+.menu_mobile_opcao a:hover {
+    background-color: rgb(101, 93, 108);
+}
+
+.fundo_menu {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .45);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s linear;
+    z-index: 2;
+}
+
+.visivel {
+    opacity: 1;
+    visibility: visible;    
+}
+
+/* corpo do site */
+main {
+    display: grid;
+    place-items: center;
+    margin-top: 7rem;
+}
+
+/* card principal */
+.card {
+    width: clamp(350px, 60vw, 900px);
+    aspect-ratio: 16/9;
+    transition: all .3s linear;
+    position: relative;
+    cursor: pointer;
+    margin: 3rem 0 1rem;
+}
+
+.card.oculto {
+    display: none;
+}
+
+.efeito_card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all .8s linear;
+}
+
+.imagem {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: all .5s;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.card:hover .imagem {
+    transform: perspective(900px) translateY(-5%)
+    rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, .75);
+    filter: blur(.8px);
+}
+
+.logo {
+    position: absolute;
+    inset: 1rem;
+    width: max(50px, 10vw);
+    transition: all .5s;
+}
+
+.card:hover .logo {
+    width: max(140px, 25vw);
+    transform: translate3d(60%, 75%, 0);
+    filter: drop-shadow(2px 35px 10px rgba(0, 0, 0, .75));
+}
+
+/* listagem de cavaleiros */
+.cavaleiros_disponiveis {
+    display: none;
+    width: 100%;
+}
+
+.cavaleiros_disponiveis.apresentado {
+    display: block;
+}
+
+#titulo_hierarquia {
+    display: block;
+    margin: auto;
+    width: max-content;
+}
+
+.lista_de_cavaleiros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.lista_de_cavaleiros li {
+    width: 30%;
+    min-width: 150px;
+    height: 15vw;
+    min-height: 100px;
+    border-radius: .3rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 0 5px 2px gray;
+}
+
+.lista_de_cavaleiros li a {
+    font-size: clamp(12px, 2vw, 18px);
+    font-weight: 500;
+    padding: 1vw;
+    height: 100%;
+    color: #e7e7e7;
+    text-shadow: 0 0 5px #000;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.lista_de_cavaleiros li img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    transition: all .3s ease-in-out;
+}
+
+.lista_de_cavaleiros li:hover img {
+    scale: 1.05;
+}
+
+.link_home {
+    display: block;
+    width: max-content;
+    margin: 1rem auto;
+    font-size: clamp(16px, 3.5vw, 20px);
+    color: #e7e7e7;
+}
+
+.efeito_link::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: #e7e7e7;
+    transform: scaleX(0);
+    transition: transform .8s cubic-bezier(.1,.58,.36,.73);
+}
+
+.efeito_link:is(:hover, :focus)::after {
+    transform: scaleX(1);
+    transition: transform .3s cubic-bezier(1,1, 1, 1);
+}
+
+/* card cavaleiro escolhido */
+.card_cavaleiro_escolhido {
+    width: clamp(250px, 30vw, 350px);
+    aspect-ratio: 3/4;
+    display: none;
+    place-items: center;
+    margin-bottom: 12rem;
+    position: relative;
+    perspective: 1000px;
+}
+
+.card_cavaleiro_escolhido.apresentado {
+    display: grid;
+}
+
+.card_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+    transform-style: preserve-3d;
+}
+
+.frente, .costas {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: .7rem;
+    overflow: hidden;
+    filter: drop-shadow(2px 8px 10px rgba(0, 0, 0, .95));
+}
+
+.costas { transform: rotateY(180deg); }
+
+.card_inner img {
+    width: 100%;
+    min-height: 100%;
+    object-fit: contain;
+    background: linear-gradient(to right bottom, rgb(102, 51, 153), rgb(0, 0, 139));
+}
+
+.card_inner .costas img { 
+    object-fit: contain;
+    background: #000;
+}
+
+.card_inner .title {
+    position: absolute;
+    width: 50%;
+    padding: clamp(.5rem, 1vw, 1rem);
+    font-size: clamp(16px, 2vw, 32px);
+    color: rgb(238, 225, 149);
+    text-shadow: 0px 0px 3px #000;
+    filter: drop-shadow(1px 2px 3px rgba(255, 255, 255, .65));
+    opacity: 0;
+}
+
+@keyframes mostrar_titulo {
+    100% {
+        opacity: 1;
+        transform: translateY(1.05rem);
+    }
+}
+
+.area__comando {
+    position: absolute;
+    bottom: -5rem;
+    display: flex;
+    align-items: center;
+    padding-block: 1rem;
+    gap: .5rem;
+}
+
+.card_cavaleiro_escolhido #check {
+    position: relative;
+    appearance: none;
+    width: 50px;
+    height: 25px;
+    background-color: rgb(131, 143, 217);
+    border-radius: .8rem;
+    cursor: pointer;
+}
+
+#check::after {
+    content: '';
+    position: absolute;
+    top: 1.8px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #09f;
+    border: 1px solid #06f;
+    transition: left .3s linear;
+}
+
+#check:checked::after { left: 25px; }
+
+.card_cavaleiro_escolhido:has(#check:checked) .card_inner {
+    transform: rotateY(180deg);
+}
+
+.card_cavaleiro_escolhido:not(#check:checked) .frente .title {
+    animation: mostrar_titulo 1s .6s linear forwards;
+}
+.card_cavaleiro_escolhido:has(#check:checked) .frente .title {
+    animation: none;
+}
+
+.card_cavaleiro_escolhido:has(#check:checked) .costas .title {
+    animation: mostrar_titulo 1s .6s linear forwards;
+}
+
+.area__comando a {
+    color: #e7e7e7;
+    position: absolute;
+    white-space: nowrap;
+    top: 3.5rem;
+    left: -2rem;
+    font-size: clamp(16px, 3.5vw, 18px);
+}
+
+.area__comando .link_home {
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+::-webkit-scrollbar {
+    width: .2rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(92, 98, 102);
+}
+
+/* responsividade */
+@media (min-width: 1024px) {
+    .area__comando {
+        bottom: 40%;
+        left: -16.5rem;
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        background-color: rgba(255, 255, 255, 0.185);
+        backdrop-filter: blur(1.05px);
+    }
+
+    .area__comando a { left: -2rem; }
+}
+
+@media (max-width: 720px) {
+    body:has(.btn.clicado) { overflow: hidden; }
+
+    header {
+        height: 82px;
+        align-items: flex-start;
+        transition: all .3s .1s linear;
+    }
+    
+    header:has(.btn.clicado) {
+        height: 220px;
+        background-color: transparent;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 5px rgb(0, 0, 0);
+        transition: background-color 0s 0s, height .3s 0s linear;
+    }
+
+    header:has(.opcao_menu_mobile_header a.aberto + .menu_mobile_opcao) {
+        height: calc(230px + 6.5rem);
+    }
+    
+    header:has(.opcao_menu_mobile_header a[href='#1'].aberto + .menu_mobile_opcao) {
+        height: calc(230px + 8.5rem);
+    }
+
+    header:has(.btn.clicado) .menu_mobile_header {
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
+        transition: all .5s .1s linear;
+    }
+
+    h1 { margin-top: .3rem; }
+
+    .menu_header { display: none; }
+
+    .menu_mobile { display: grid; }
+
+    .visivel {
+        opacity: 1;
+        visibility: visible;    
+    }
+}
+
+@media (min-width: 720px) {
+    .visivel {
+        opacity: 0;
+        visibility: hidden;    
+    }
+}
+
+@media (max-width: 420px) {
+    .lista_de_cavaleiros li {
+        width: 100%;
+        min-height: 50vw;
+    }
+    
+    .lista_de_cavaleiros li a {
+        padding: 2.5vw;
+        font-size: clamp(12px, 5vw, 18px);
+    }
+}
+
+@media (max-width: 360px) {
+    .card { width: 95vw; }
+    .logo { width: max(50px, 10vw); }    
+    .card:hover .logo { width: 40vw; }
+}
