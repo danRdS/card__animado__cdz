@@ -146,7 +146,7 @@ function mostrarListagemDeCavaleiros(event) {
     Object.keys(cavaleiros[indiceHierarquia]).forEach(cavaleiro => {
         lista_de_cavaleiros.innerHTML += 
         `<li>
-            <a href="#${cavaleiro}" onclick="mostrarCavaleiroEscolhido(event)">${cavaleiro}</a>
+            <a href="#${cavaleiro}" onclick="mostrarCavaleiroEscolhido(event); irParaTopo()">${cavaleiro}</a>
             <img src="assets/images_miniatura/${cavaleiro}.webp" alt="${cavaleiro}">
         </li>`
     })
@@ -154,6 +154,7 @@ function mostrarListagemDeCavaleiros(event) {
     card.classList.add('oculto');
     card_cavaleiro_escolhido.classList.remove('apresentado');
     cavaleiros_disponiveis.classList.add('apresentado');
+    irParaTopo();
 }
 
 function mostrarCavaleiroEscolhido(event) {
@@ -197,4 +198,9 @@ function scrollFunction() {
     } else {
         header.classList.remove('cor_fundo_header');
     }
+}
+
+function irParaTopo() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
