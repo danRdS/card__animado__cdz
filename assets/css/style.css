@@ -87,9 +87,7 @@ a[href="#cavaleiros"] + .menu_opcao a { color: #fff; }
     padding: .3rem .9rem;
 }
 
-.menu_opcao li:hover {
-    background-color: rgb(101, 93, 108);
-}
+.menu_opcao li:hover { background-color: rgb(101, 93, 108); }
 
 /* menu mobile */
 .menu_mobile {
@@ -115,9 +113,7 @@ a[href="#cavaleiros"] + .menu_opcao a { color: #fff; }
     transition: all .3s linear;
 }
 
-.clicado {
-    background-color: rgb(61, 56, 67);
-}
+.clicado { background-color: rgb(61, 56, 67); }
 
 .btn.clicado .barra:first-of-type {
     transform: rotate(45deg) translate(6px, 6px) ;
@@ -218,19 +214,39 @@ main {
     margin-top: 7rem;
 }
 
+.main_tela_inicial {
+    display: grid;
+    place-items: center;
+}
+
+.main_tela_inicial p {
+    padding: 1rem;
+    margin: 1rem;
+    text-shadow: 0 0 3px #000;
+    hyphens: auto;
+    border-radius: .4rem;
+    background-color: rgba(255, 255, 255, .25);
+    backdrop-filter: blur(2px);
+}
+
+.texto__tela__inicial {
+    font-weight: 700;
+    display: block;
+    font-size: 1.15rem; 
+    margin-block: 1rem;
+}
+
 /* card principal */
 .card {
     width: clamp(350px, 60vw, 900px);
     aspect-ratio: 16/9;
-    transition: all .3s linear;
     position: relative;
+    margin-block: 1rem;
     cursor: pointer;
-    margin: 3rem 0 1rem;
+    transition: all .3s linear;
 }
 
-.card.oculto {
-    display: none;
-}
+.main_tela_inicial.oculto { display: none; }
 
 .efeito_card {
     width: 100%;
@@ -279,9 +295,7 @@ main {
     width: 100%;
 }
 
-.cavaleiros_disponiveis.apresentado {
-    display: block;
-}
+.cavaleiros_disponiveis.apresentado { display: block; }
 
 #titulo_hierarquia {
     display: block;
@@ -333,9 +347,7 @@ main {
     transition: all .3s ease-in-out;
 }
 
-.lista_de_cavaleiros li:hover img {
-    scale: 1.05;
-}
+.lista_de_cavaleiros li:hover img { scale: 1.05; }
 
 .link_home {
     display: block;
@@ -371,9 +383,7 @@ main {
     perspective: 1000px;
 }
 
-.card_cavaleiro_escolhido.apresentado {
-    display: grid;
-}
+.card_cavaleiro_escolhido.apresentado { display: grid; }
 
 .card_inner {
     position: relative;
@@ -488,9 +498,7 @@ main {
     transform: translateX(-50%);
 }
 
-::-webkit-scrollbar {
-    width: .2rem;
-}
+::-webkit-scrollbar { width: .2rem; }
 
 ::-webkit-scrollbar-thumb {
     background-color: rgb(92, 98, 102);
@@ -508,6 +516,18 @@ main {
     }
 
     .area__comando a { left: -2rem; }
+
+    .main_tela_inicial {
+        padding: 0 .2rem 1rem 5vw;
+        grid-template: 
+        "card card texto" 
+        "card card texto";
+        gap: 1rem;
+        gap: 3vw;
+    }
+
+    .card { grid-area: card; }
+    .main_tela_inicial p { grid-area: texto; }
 }
 
 @media (max-width: 720px) {

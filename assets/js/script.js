@@ -115,7 +115,7 @@ function mostrarListagemDeCavaleiros(event) {
     btn_menu.classList.remove('clicado');
     fundo_menu.classList.remove('visivel');
 
-    const card = document.querySelector('.card');
+    const main_tela_inicial = document.querySelector('.main_tela_inicial');
     const titulo_hierarquia  = document.getElementById('titulo_hierarquia');
     const voltar_cavaleiros_disponiveis = document.getElementById('voltar_cavaleiros_disponiveis');
 
@@ -151,7 +151,7 @@ function mostrarListagemDeCavaleiros(event) {
         </li>`
     })
 
-    card.classList.add('oculto');
+    main_tela_inicial.classList.add('oculto');
     card_cavaleiro_escolhido.classList.remove('apresentado');
     cavaleiros_disponiveis.classList.add('apresentado');
     irParaTopo();
@@ -160,7 +160,6 @@ function mostrarListagemDeCavaleiros(event) {
 function mostrarCavaleiroEscolhido(event) {
     const imagem_cavaleiro = document.getElementById('imagem_cavaleiro');
     const imagem_armadura = document.getElementById('imagem_armadura');
-
     const titulo_cavaleiro = document.querySelector('.title');
     const titulo_armadura = document.querySelectorAll('.title')[1];
     const cavaleiroEscolhido = event.target.textContent;
@@ -189,9 +188,9 @@ function mostrarCavaleiroEscolhido(event) {
     card_cavaleiro_escolhido.classList.add('apresentado');
 }
 
-window.onscroll = () => scrollFunction();
+window.onscroll = () => funcaoDeRolagemPagina();
 
-function scrollFunction() {
+function funcaoDeRolagemPagina() {
     const header = document.querySelector('header');
     if(document.body.scrollTop > 30 || document.documentElement.scrollTop > 30){
         header.classList.add('cor_fundo_header');
