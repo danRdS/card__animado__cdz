@@ -87,7 +87,9 @@ a[href="#cavaleiros"] + .menu_opcao a { color: #fff; }
     padding: .3rem .9rem;
 }
 
-.menu_opcao li:hover { background-color: rgb(101, 93, 108); }
+.menu_opcao li:hover { 
+    background-color: rgb(101, 93, 108);
+}
 
 /* menu mobile */
 .menu_mobile {
@@ -340,10 +342,8 @@ main {
     height: 100%;
     position: absolute;
     top: 0;
-    object-fit: contain;
     object-fit: cover;
     object-position: center;
-    pointer-events: none;
     transition: all .3s ease-in-out;
 }
 
@@ -412,7 +412,6 @@ main {
 }
 
 .card_inner .costas img { 
-    object-fit: contain;
     background: #000;
 }
 
@@ -475,6 +474,7 @@ main {
 .card_cavaleiro_escolhido:not(#check:checked) .frente .title {
     animation: mostrar_titulo 1s .6s linear forwards;
 }
+
 .card_cavaleiro_escolhido:has(#check:checked) .frente .title {
     animation: none;
 }
