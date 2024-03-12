@@ -20,7 +20,7 @@ const abrirFecharMenu = () => {
 const fecharMenu = () => { abrirFecharMenu(); }
 
 const opcao_menu_header = document.querySelectorAll('.titulo_opcao_menu');
-let submenuAberto, hierarquia, indiceHierarquia;
+let submenuAberto, tempo, hierarquia, indiceHierarquia;
 
 function abrirSubmenu(elemento) {
     const elementoClicado = elemento.target;
