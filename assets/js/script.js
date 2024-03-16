@@ -119,8 +119,7 @@ function mostrarListagemDeCavaleiros(event) {
     const titulo_hierarquia  = document.getElementById('titulo_hierarquia');
     const voltar_cavaleiros_disponiveis = document.getElementById('voltar_cavaleiros_disponiveis');
 
-    event.target.getAttribute('href') == '#cavaleiros' ?
-    hierarquia = hierarquia :
+    event.target.getAttribute('href') == '#cavaleiros' ? hierarquia = hierarquia :
     hierarquia = event.target.getAttribute('href').slice(1);
     
     const lista_de_cavaleiros = document.querySelector('.lista_de_cavaleiros');
@@ -158,6 +157,7 @@ function mostrarListagemDeCavaleiros(event) {
 }
 
 function mostrarCavaleiroEscolhido(event) {
+    const loader = document.querySelector('.loader');
     const imagem_cavaleiro = document.getElementById('imagem_cavaleiro');
     const imagem_armadura = document.getElementById('imagem_armadura');
     const titulo_cavaleiro = document.querySelector('.title');
@@ -172,20 +172,55 @@ function mostrarCavaleiroEscolhido(event) {
         indiceHierarquia = 2;
     }
 
-    imagem_cavaleiro.src = `assets/images/${cavaleiroEscolhido}.webp`;
-    imagem_cavaleiro.alt = `Imagem do ${cavaleiroEscolhido}`;
-    imagem_armadura.src = `assets/images/armadura_do_${cavaleiroEscolhido}.webp`;
+    loader.classList.add('ativo');
+    imagem_cavaleiro.src = "assets/images/fundo-negro.jpg";
+    imagem_armadura.src = "assets/images/fundo-negro.jpg";
+
+    carregarImagemCavaleiro(`assets/images/${cavaleiroEscolhido}.webp`)
+    .then(imagemAdicionadaCavaleiro => {
+        imagem_cavaleiro.src = imagemAdicionadaCavaleiro.src;
+        loader.classList.remove('ativo');
+    }).catch(error => {
+        alert('Erro ao carregar a imagem;', error);
+    });
     
+    carregarImagemArmadura(`assets/images/armadura_do_${cavaleiroEscolhido}.webp`)
+    .then(imagemAdicionadaArmadura => {
+        imagem_armadura.src = imagemAdicionadaArmadura.src;
+        loader.classList.remove('ativo');
+    }).catch(error => {
+        alert('Erro ao carregar a imagem;', error);
+    });
+
     Object.entries(cavaleiros[indiceHierarquia]).forEach(dado_cavaleiro => {
         if(dado_cavaleiro[0] == cavaleiroEscolhido) {
             titulo_cavaleiro.innerText = `${cavaleiroEscolhido} de ${dado_cavaleiro[1]}`;
             titulo_armadura.innerText = `Armadura de ${dado_cavaleiro[1]}`;
+            imagem_cavaleiro.alt = `Imagem do ${cavaleiroEscolhido}`;
             imagem_armadura.alt = `Imagem da armadura de ${dado_cavaleiro[1]}`;
         }
-    })
+    });
 
     cavaleiros_disponiveis.classList.remove('apresentado');
     card_cavaleiro_escolhido.classList.add('apresentado');
+}
+
+function carregarImagemCavaleiro(imagemSrc) {
+    return new Promise((resolve, reject) => {
+        const imagem = new Image();
+        imagem.onload = () => resolve(imagem);
+        imagem.src = imagemSrc;
+        imagem.onerror = reject;
+    });
+}
+
+function carregarImagemArmadura(imagemSrc) {
+    return new Promise((resolve, reject) => {
+        const imagem = new Image();
+        imagem.onload = () => resolve(imagem);
+        imagem.src = imagemSrc;
+        imagem.onerror = reject;
+    });
 }
 
 window.onscroll = () => funcaoDeRolagemPagina();
